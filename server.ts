@@ -5,6 +5,8 @@ import {
   Status,
 } from "https://deno.land/x/oak@v9.0.0/mod.ts";
 
+import { testQuery } from "./db.ts";
+
 // Define the routes
 const router = new Router();
 
@@ -18,6 +20,8 @@ router.post("/create", async (context) => {
   } catch {
     context.throw(Status.BadRequest, "Invalid url");
   }
+
+  await testQuery();
 
   context.response.body = url;
 });
