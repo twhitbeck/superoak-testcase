@@ -1,5 +1,6 @@
 import {
   Application,
+  HttpServerStd,
   Router,
   Status,
 } from "https://deno.land/x/oak@v9.0.0/mod.ts";
@@ -21,7 +22,7 @@ router.post("/create", async (context) => {
   context.response.body = url;
 });
 
-const app = new Application();
+const app = new Application({ serverConstructor: HttpServerStd });
 
 app.use(router.routes());
 app.use(router.allowedMethods());
